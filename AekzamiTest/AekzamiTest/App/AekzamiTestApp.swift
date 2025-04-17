@@ -14,10 +14,6 @@ struct AekzamiTestApp: App {
     private let router = AppRouter()
     private let authManager = AuthManager()
 
-    init() {
-        FirebaseApp.configure()
-    }
-
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: Bindable(router).routes) {
