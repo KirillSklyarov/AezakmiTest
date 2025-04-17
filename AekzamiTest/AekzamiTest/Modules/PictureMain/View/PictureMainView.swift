@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct PictureMainView: View {
+
+    @Environment(AuthManager.self) var authManager
+    @Environment(AppRouter.self) var appRouter
+
+    @State private var viewModel: PictureMainViewModeling = PictureMainViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AppButton(type: .category, title: "Выход из профиля") {
+            viewModel.logout()
+        }
+        .onAppear {
+            viewModel.setDependencies(authManager, appRouter)
+        }
     }
 }
 

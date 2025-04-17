@@ -14,8 +14,8 @@ final class AuthManager {
     private(set) var isUserLogIn: Bool = false
 
     init() {
-        FirebaseApp.configure()
         self.isUserLogIn = Auth.auth().currentUser != nil
+        print(isUserLogIn ? "✅ User is logged in" : "❌ User is not logged in")
     }
 
     // MARK: - Methods
