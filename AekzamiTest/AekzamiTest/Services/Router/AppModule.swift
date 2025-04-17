@@ -11,19 +11,12 @@ enum AppModule {
     case registration
     case signIn
     case resetPassword
-//    case enter
-//    case mainMenu
-//    case category
-//    case level
-//    case game
-//    case statistics
-//    case rating
-//    case result
+    case mainMenu
 
     var isFullScreen: Bool {
         switch self {
+        case .mainMenu: return true
         case .registration, .signIn, .resetPassword: return false
-        default: return true
         }
     }
 
@@ -32,14 +25,7 @@ enum AppModule {
         case .registration: RegistrationView()
         case .signIn: SignInView()
         case .resetPassword: ResetPasswordView()
-//        case .mainMenu: MainMenuView()
-//        case .category: ChooseCategoryView()
-//        case .level: ChooseLevelView()
-//        case .game: GameView()
-//        case .statistics: StatisticsView()
-//        case .rating: RatingView()
-//        case .result: ResultView()
-//        case .username: EnterUsernameView()
+        case .mainMenu: PictureMainView()
         }
     }
 }

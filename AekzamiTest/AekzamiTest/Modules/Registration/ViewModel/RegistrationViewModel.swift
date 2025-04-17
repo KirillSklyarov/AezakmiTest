@@ -66,7 +66,7 @@ final class RegistrationViewModel: RegistrationViewModeling {
 
 private extension RegistrationViewModel {
     func goToEnterUsername() {
-//        router?.show(.username)
+        router?.show(.mainMenu)
     }
 
     func authErrorHandler(_ error: Error) {
