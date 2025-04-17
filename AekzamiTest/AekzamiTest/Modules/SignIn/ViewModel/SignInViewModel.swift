@@ -10,24 +10,26 @@ import SwiftUI
 protocol EnterViewModeling {
     func signIn()
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String>
-//    func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
+    func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
+
+    func backToRegistration()
 }
 
 @Observable
 final class SignInViewModel: EnterViewModeling {
 
-//    private var router: AppRouting?
-//    private var authManager: AuthManager?
+    private var router: AppRouting?
+    private var authManager: AuthManager?
     private var data = RegistrationData()
 
 //    private(set) var alert: AlertItem?
     var isAlertPresented: Bool = false
 
     // MARK: - Public methods
-//    func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
-//        self.authManager = authManager
-//        self.router = router
-//    }
+    func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
+        self.authManager = authManager
+        self.router = router
+    }
 
     func signIn() {
 //        authManager?.signIn(email: data.login, password: data.password) { [weak self] in
@@ -42,7 +44,11 @@ final class SignInViewModel: EnterViewModeling {
 //            }
 //        }
     }
-    
+
+    func backToRegistration() {
+        router?.popLast()
+    }
+
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String> {
         Binding(get: { self.data[keyPath: keyPath] },
                 set: { self.data[keyPath: keyPath] = $0 } )

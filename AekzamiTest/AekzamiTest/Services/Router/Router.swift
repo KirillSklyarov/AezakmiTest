@@ -13,6 +13,8 @@ protocol AppRouting: AnyObject {
     
     func show(_ type: AppModule)
     func backToRoot()
+
+    func popLast()
 }
 
 @Observable
@@ -30,6 +32,11 @@ final class AppRouter: AppRouting {
 
     func backToRoot() {
         reset()
+    }
+
+    func popLast() {
+        guard !routes.isEmpty else { print("Can't pop last module"); return }
+        routes.removeLast()
     }
 }
 

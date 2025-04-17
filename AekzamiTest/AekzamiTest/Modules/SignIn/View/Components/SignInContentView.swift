@@ -25,7 +25,8 @@ struct SignInContentView: View {
             AppButton(type: .forgotPassword)
             AppButton(type: .backToRegistration) {
                 isFocused = false
-                dismiss()
+                viewModel.backToRegistration()
+//                dismiss()
             }
             Spacer()
         }

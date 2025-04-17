@@ -10,17 +10,19 @@ import SwiftUI
 @main
 struct AekzamiTestApp: App {
 
-    @Environment(AppRouter.self) var router
-    @Environment(AuthManager.self) var authManager
+    private let router = AppRouter()
+    private let authManager = AuthManager()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: Bindable(router).routes) {
                 RegistrationView()
+                    .applyNavBarConfig(title: "")
                     .applyRouterConfiguration2(router: router)
-                    .environment(router)
-                    .environment(authManager)
             }
+            .environment(router)
+            .environment(authManager)
+            .tint(.white)
         }
     }
 }

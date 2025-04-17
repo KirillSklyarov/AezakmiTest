@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct SignInView: View {
-//
-//    @Environment(AppRouter.self) private var router
-//    @Environment(AuthManager.self) private var authManager
+
+    @Environment(AppRouter.self) private var router
+    @Environment(AuthManager.self) private var authManager
     @State private var viewModel = SignInViewModel()
 
     var body: some View {
         SignInContentView(viewModel: viewModel)
-//            .onAppear {
-//                viewModel.setDependencies(authManager, router)
-//            }
+            .onAppear {
+                viewModel.setDependencies(authManager, router)
+            }
 //            .applyAuthErrorAlert(
 //                type: .signIn,
 //                alert: viewModel.alert,
