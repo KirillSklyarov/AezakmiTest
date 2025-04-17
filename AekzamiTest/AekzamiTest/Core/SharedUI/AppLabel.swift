@@ -14,6 +14,7 @@ enum AppLabelType {
     case category
     case categoryRow
     case levelRow
+    case resetPassword
 }
 
 struct AppLabel: View {
@@ -56,7 +57,11 @@ struct AppLabel: View {
             Text(text ?? "")
                 .font(.system(size: 26, weight: .bold))
                 .foregroundStyle(color ?? .black)
-
+        case .resetPassword:
+            Text(text ?? "Мы отправим письмо с ссылкой на восстановление пароля на вашу электронную почту")
+                .font(.system(size: 22, weight: .semibold))
+                .foregroundStyle(color ?? .white)
+                .multilineTextAlignment(.leading)
         }
     }
 }

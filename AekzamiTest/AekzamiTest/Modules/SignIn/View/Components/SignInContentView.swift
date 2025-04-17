@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SignInContentView: View {
 
-    @Environment(\.dismiss) var dismiss
     var viewModel: EnterViewModeling
     @FocusState private var isFocused: Bool
 
@@ -22,21 +21,19 @@ struct SignInContentView: View {
             AppButton(type: .enter) {
                 viewModel.signIn()
             }
-            AppButton(type: .forgotPassword)
+            AppButton(type: .forgotPassword) {
+                viewModel.goToResetPassword()
+            }
             AppButton(type: .backToRegistration) {
                 isFocused = false
                 viewModel.backToRegistration()
-//                dismiss()
             }
             Spacer()
         }
         .padding(.horizontal, 34)
         .padding(.top, 20)
         .applyBaseScreenView()
-//        .task {
-//            try? await Task.sleep(nanoseconds: 500_000_000)
-//            isFocused = true
-//        }
+        .applyNavBarConfig(title: "")
     }
 }
 

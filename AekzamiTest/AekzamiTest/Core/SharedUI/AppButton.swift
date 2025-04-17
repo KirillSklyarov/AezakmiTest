@@ -12,6 +12,7 @@ enum AppButtonType {
     case register
     case forgotPassword
     case signOut
+    case resetPassword
     case saveUsername
     case backToRegistration
     case startGame
@@ -62,6 +63,7 @@ struct AppButton: View {
             case .backToRegistration: DidForgetPasswordButtonView(text: "Вернуться к регистрации")
             case .signOut: ExitButtonView(buttonText: "Выйти из аккаунта")
             case .saveUsername: RegisterButtonView(buttonText: "Продолжить", isDisabled: isDisabled)
+            case .resetPassword: RegisterButtonView(buttonText: "Сбросить пароль", isDisabled: isDisabled)
             }
         }
     }
@@ -83,6 +85,7 @@ struct AppButton: View {
         case .backToRegistration: print("Back to registration?")
         case .signOut: print("Действие по умолчанию для выхода из аккаунта")
         case .saveUsername: print("Действие по умолчанию для сохранения имени")
+        case .resetPassword: print("Действие по умолчанию для сброса пароля")
         }
     }
 }

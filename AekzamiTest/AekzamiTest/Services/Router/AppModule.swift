@@ -10,6 +10,7 @@ import SwiftUI
 enum AppModule {
     case registration
     case signIn
+    case resetPassword
 //    case enter
 //    case mainMenu
 //    case category
@@ -21,7 +22,7 @@ enum AppModule {
 
     var isFullScreen: Bool {
         switch self {
-        case .registration, .signIn: return false
+        case .registration, .signIn, .resetPassword: return false
         default: return true
         }
     }
@@ -30,6 +31,7 @@ enum AppModule {
         switch self {
         case .registration: RegistrationView()
         case .signIn: SignInView()
+        case .resetPassword: ResetPasswordView()
 //        case .mainMenu: MainMenuView()
 //        case .category: ChooseCategoryView()
 //        case .level: ChooseLevelView()

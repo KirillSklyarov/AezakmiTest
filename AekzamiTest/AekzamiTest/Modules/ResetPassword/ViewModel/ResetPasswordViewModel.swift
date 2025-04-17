@@ -1,23 +1,22 @@
 //
-//  EnterViewModel.swift
-//  SwiftUI_1
+//  EnterViewModeling.swift
+//  AekzamiTest
 //
 //  Created by Kirill Sklyarov on 17.04.2025.
 //
 
 import SwiftUI
 
-protocol EnterViewModeling {
+protocol ResetPasswordModeling {
     func signIn()
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String>
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
 
-    func backToRegistration()
-    func goToResetPassword()
+    func backToPreviousScreen()
 }
 
 @Observable
-final class SignInViewModel: EnterViewModeling {
+final class ResetPasswordViewModel: ResetPasswordModeling {
 
     private var router: AppRouting?
     private var authManager: AuthManager?
@@ -46,12 +45,8 @@ final class SignInViewModel: EnterViewModeling {
 //        }
     }
 
-    func backToRegistration() {
+    func backToPreviousScreen() {
         router?.popLast()
-    }
-
-    func goToResetPassword() {
-        router?.show(.resetPassword)
     }
 
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String> {
