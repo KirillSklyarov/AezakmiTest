@@ -9,15 +9,15 @@ import SwiftUI
 
 struct RegistrationView: View {
 
-//    @Environment(AppRouter.self) private var router
-//    @Environment(AuthManager.self) private var authManager
+    @Environment(AppRouter.self) private var router
+    @Environment(AuthManager.self) private var authManager
     @State private var viewModel = RegistrationViewModel()
 
     var body: some View {
         RegistrationContentView(viewModel: viewModel)
-//            .onAppear {
-//                viewModel.setDependencies(authManager, router)
-//            }
+            .onAppear {
+                viewModel.setDependencies(authManager, router)
+            }
 //            .applyAuthErrorAlert(
 //                alert: viewModel.alert,
 //                isAlertPresented: $viewModel.isAlertPresented
@@ -28,13 +28,14 @@ struct RegistrationView: View {
 
 
 #Preview {
-//    let router = AppRouter()
-//    let authManager = AuthManager()
+    let router = AppRouter()
+    let authManager = AuthManager()
 
-    NavigationStack {
+    NavigationStack(path: Bindable(router).routes) {
         RegistrationView()
-//            .applyRouterConfiguration(router: router)
-//            .environment(authManager)
-//            .environment(router)
+            .applyRouterConfiguration2(router: router)
+            .environment(authManager)
+            .environment(router)
     }
+    .tint(.white)
 }

@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct AekzamiTestApp: App {
+
+    @Environment(AppRouter.self) var router
+    @Environment(AuthManager.self) var authManager
+
     var body: some Scene {
         WindowGroup {
-            RegistrationView()
+            NavigationStack(path: Bindable(router).routes) {
+                RegistrationView()
+                    .applyRouterConfiguration2(router: router)
+                    .environment(router)
+                    .environment(authManager)
+            }
         }
     }
 }

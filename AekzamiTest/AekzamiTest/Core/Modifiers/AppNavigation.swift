@@ -29,6 +29,7 @@ struct NavigationBarModifier: ViewModifier {
         content
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(title)
+            .tint(.white)
     }
 }
 

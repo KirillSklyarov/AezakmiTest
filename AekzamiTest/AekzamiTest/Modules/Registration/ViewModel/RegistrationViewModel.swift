@@ -22,8 +22,8 @@ protocol RegistrationViewModeling: BaseViewModeling {
 @Observable
 final class RegistrationViewModel: RegistrationViewModeling {
 
-//    private var router: AppRouting?
-//    private var authManager: AuthManager?
+    private var router: AppRouting?
+    private var authManager: AuthManager?
     private var data = RegistrationData()
 
 //    var state: ViewModelState = .success
@@ -31,17 +31,17 @@ final class RegistrationViewModel: RegistrationViewModeling {
 //    var isAlertPresented: Bool = false
 //
 //    // MARK: - Public methods
-//    func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
-//        self.authManager = authManager
-//        self.router = router
-//    }
+    func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
+        self.authManager = authManager
+        self.router = router
+    }
 //
 //    func setState(_ state: ViewModelState) {
 //        self.state = state
 //    }
 //
     func goToEnterScreen() {
-//        router?.show(.enter)
+        router?.show(.signIn)
     }
 //
     func registerUser() {
