@@ -29,8 +29,8 @@ struct AuthErrorAlertModifier: ViewModifier {
                    presenting: alert)
         { alertItem in
             switch type {
-            case .username, .signIn, .resetPassword:
-                Button("OK", role: .cancel) { okAction?() }
+            case .registration, .username, .signIn, .resetPassword:
+                Button(alert?.buttonTitle ?? "OK") { okAction?() }
             default:
                 Button("Отмена", role: .cancel) { }
                 Button("OK", role: .destructive) { okAction?() }
@@ -40,7 +40,7 @@ struct AuthErrorAlertModifier: ViewModifier {
 }
 
 extension View {
-    func applyAuthErrorAlert(type: AuthErrorAlertType = .registration, alert: AlertItem?, isAlertPresented: Binding<Bool>, okAction: (() -> Void)? = nil) -> some View {
+    func applyAuthErrorAlert(type: AuthErrorAlertType, alert: AlertItem?, isAlertPresented: Binding<Bool>, okAction: (() -> Void)? = nil) -> some View {
         modifier(
             AuthErrorAlertModifier(
                 type: type,

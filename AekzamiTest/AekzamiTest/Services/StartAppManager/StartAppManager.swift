@@ -31,10 +31,11 @@ final class StartAppManager {
                 } else {
                     RegistrationView()
                         .applyRouterConfiguration2(router: router)
+                        .tint(.blue)
                 }
             }
+            .tint(.white)
         }
-        .tint(.white)
         .environment(router)
         .environment(authManager)
     }

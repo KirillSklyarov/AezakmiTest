@@ -19,14 +19,14 @@ struct RegistrationView: View {
                 .onAppear {
                     viewModel.setDependencies(authManager, router)
                 }
-            //            .applyAuthErrorAlert(
-            //                alert: viewModel.alert,
-            //                isAlertPresented: $viewModel.isAlertPresented
-            //            )
+                .applyAuthErrorAlert(
+                    type: .registration,
+                    alert: viewModel.alert,
+                    isAlertPresented: $viewModel.isAlertPresented
+                )
         }
     }
 }
-
 
 
 #Preview {

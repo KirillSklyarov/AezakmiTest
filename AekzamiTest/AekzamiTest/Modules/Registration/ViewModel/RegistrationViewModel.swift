@@ -45,6 +45,8 @@ final class RegistrationViewModel: RegistrationViewModeling {
     }
 
     func registerUser() {
+        guard userDataValidation() else { return }
+
         authManager?.registration(email: data.email, password: data.password) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -71,5 +73,15 @@ private extension RegistrationViewModel {
 
     func authErrorHandler(_ error: Error) {
         self.alert = authManager?.authErrorHandler(error)
+    }
+
+    func userDataValidation() -> Bool {
+        if data.email.isEmpty || data.password.isEmpty {
+            alert = AlertItem(message: "Email или пароль не заполнен")
+            isAlertPresented = true
+            return false
+        } else {
+            return true
+        }
     }
 }
