@@ -7,7 +7,6 @@
 
 import SwiftUI
 import GoogleSignIn
-import GoogleSignInSwift
 
 protocol EnterViewModeling {
     func signIn()
@@ -27,7 +26,8 @@ final class SignInViewModel: EnterViewModeling {
     private var data = RegistrationData()
 
     private(set) var alert: AlertItem?
-    var isAlertPresented: Bool = false
+    var isAlertPresented = false
+    var isSuccessIndicatorPresented = false
 
     // MARK: - Public methods
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
@@ -41,18 +41,22 @@ final class SignInViewModel: EnterViewModeling {
             switch $0 {
             case .success(_):
                 print("✅ Authorization successful")
-                router?.show(.mainMenu)
+                isSuccessIndicatorPresented = true
             case .failure(let error):
-                alert = authManager?.authErrorHandler(error)
-                isAlertPresented = true
+                showAlert(with: error)
             }
         }
     }
 
     func signInWithGoogle() {
         authManager?.signInWithGoogle() { [weak self] in
-            self?.router?.show(.mainMenu)
+            guard let self else { return }
+            isSuccessIndicatorPresented = true
         }
+    }
+
+    func goToMainMenu() {
+        router?.show(.mainMenu)
     }
 
     func backToRegistration() {
@@ -66,5 +70,13 @@ final class SignInViewModel: EnterViewModeling {
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String> {
         Binding(get: { self.data[keyPath: keyPath] },
                 set: { self.data[keyPath: keyPath] = $0 } )
+    }
+}
+
+// MARK: - Private methods
+private extension SignInViewModel {
+    func showAlert(with error: any Error) {
+        alert = authManager?.authErrorHandler(error)
+        isAlertPresented = true
     }
 }

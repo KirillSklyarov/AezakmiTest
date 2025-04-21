@@ -31,6 +31,12 @@ struct RegistrationContentView: View {
         .padding(.horizontal, 34)
         .padding(.top, 20)
         .applyBaseScreenView()
+        .sheet(isPresented: viewModel.successIndicatorBinding()) {
+            SuccessIndicatorView() {
+                viewModel.goToMainMenu()
+            }
+            .presentationDetents([.medium])
+        }
     }
 }
 

@@ -29,7 +29,8 @@ final class RegistrationViewModel: RegistrationViewModeling {
 //    var state: ViewModelState = .success
     private(set) var alert: AlertItem?
     var isAlertPresented: Bool = false
-//
+    var isSuccessIndicatorPresented: Bool = false
+
 //    // MARK: - Public methods
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
         self.authManager = authManager
@@ -47,15 +48,15 @@ final class RegistrationViewModel: RegistrationViewModeling {
     func registerUser() {
         guard userDataValidation() else { return }
 
-        authManager?.registration(email: data.email, password: data.password) { [weak self] result in
+        authManager?.registration(email: data.email, password: data.password) { [weak self] in
             guard let self else { return }
-            switch result {
+            switch $0 {
             case .failure(let error):
-                isAlertPresented = true
-                authErrorHandler(error)
+                showAlert(with: error)
             case .success(_):
+                isSuccessIndicatorPresented = true
                 print("✅ Пользователь успешно зарегистрирован")
-                goToEnterUsername()
+//                goToEnterUsername()
             }
         }
     }
@@ -64,11 +65,21 @@ final class RegistrationViewModel: RegistrationViewModeling {
         Binding(get: { self.data[keyPath: keyPath] },
                 set: { self.data[keyPath: keyPath] = $0 } )
     }
+
+    func successIndicatorBinding() -> Binding<Bool> {
+        Binding(get: { self.isSuccessIndicatorPresented },
+                set: { self.isSuccessIndicatorPresented = $0 } )
+    }
+
+    func goToMainMenu() {
+        router?.show(.mainMenu)
+    }
 }
 
 private extension RegistrationViewModel {
-    func goToEnterUsername() {
-        router?.show(.mainMenu)
+    func showAlert(with error: any Error) {
+        isAlertPresented = true
+        authErrorHandler(error)
     }
 
     func authErrorHandler(_ error: Error) {

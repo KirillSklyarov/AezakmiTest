@@ -23,6 +23,12 @@ struct SignInView: View {
                 alert: viewModel.alert,
                 isAlertPresented: $viewModel.isAlertPresented
             )
+            .sheet(isPresented: $viewModel.isSuccessIndicatorPresented) {
+                SuccessIndicatorView {
+                    viewModel.goToMainMenu()
+                }
+                .presentationDetents([.medium])
+            }
     }
 }
 
