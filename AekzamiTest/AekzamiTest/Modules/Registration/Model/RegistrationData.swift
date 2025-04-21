@@ -6,8 +6,8 @@
 //
 
 struct RegistrationData {
+    var email = ""
     var password = ""
-    var login = ""
     var userName = ""
     var isErrorAlertPresented: Bool = false
 }

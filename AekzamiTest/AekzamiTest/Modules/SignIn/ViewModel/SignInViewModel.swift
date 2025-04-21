@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 protocol EnterViewModeling {
     func signIn()
+    func signInWithGoogle()
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String>
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
 
@@ -23,7 +26,7 @@ final class SignInViewModel: EnterViewModeling {
     private var authManager: AuthManager?
     private var data = RegistrationData()
 
-//    private(set) var alert: AlertItem?
+    private(set) var alert: AlertItem?
     var isAlertPresented: Bool = false
 
     // MARK: - Public methods
@@ -33,17 +36,23 @@ final class SignInViewModel: EnterViewModeling {
     }
 
     func signIn() {
-//        authManager?.signIn(email: data.login, password: data.password) { [weak self] in
-//            guard let self else { return }
-//            switch $0 {
-//            case .success(_):
-//                print("✅ Authorization successful")
-//                router?.show(.mainMenu)
-//            case .failure(let error):
-//                alert = authManager?.authErrorHandler(error)
-//                isAlertPresented = true
-//            }
-//        }
+        authManager?.signIn(email: data.email, password: data.password) { [weak self] in
+            guard let self else { return }
+            switch $0 {
+            case .success(_):
+                print("✅ Authorization successful")
+                router?.show(.mainMenu)
+            case .failure(let error):
+                alert = authManager?.authErrorHandler(error)
+                isAlertPresented = true
+            }
+        }
+    }
+
+    func signInWithGoogle() {
+        authManager?.signInWithGoogle() { [weak self] in
+            self?.router?.show(.mainMenu)
+        }
     }
 
     func backToRegistration() {

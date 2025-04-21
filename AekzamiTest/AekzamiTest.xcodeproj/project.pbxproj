@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		734FE0A62DB422AD00E6C6CB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 734FE0A52DB422AD00E6C6CB /* GoogleSignIn */; };
+		734FE0A82DB422AD00E6C6CB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 734FE0A72DB422AD00E6C6CB /* GoogleSignInSwift */; };
 		73A7885A2DB178BF004F856D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 73A788592DB178BF004F856D /* FirebaseAnalytics */; };
 		73A7885C2DB178BF004F856D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 73A7885B2DB178BF004F856D /* FirebaseAuth */; };
 		73A7885E2DB178BF004F856D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 73A7885D2DB178BF004F856D /* FirebaseCrashlytics */; };
@@ -16,9 +18,22 @@
 		7349097F2DB14C0C004E3158 /* AekzamiTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AekzamiTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		737146682DB43AF300C00DFB /* Exceptions for "AekzamiTest" folder in "AekzamiTest" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7349097E2DB14C0C004E3158 /* AekzamiTest */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		734909812DB14C0C004E3158 /* AekzamiTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				737146682DB43AF300C00DFB /* Exceptions for "AekzamiTest" folder in "AekzamiTest" target */,
+			);
 			path = AekzamiTest;
 			sourceTree = "<group>";
 		};
@@ -29,7 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				734FE0A82DB422AD00E6C6CB /* GoogleSignInSwift in Frameworks */,
 				73A7885E2DB178BF004F856D /* FirebaseCrashlytics in Frameworks */,
+				734FE0A62DB422AD00E6C6CB /* GoogleSignIn in Frameworks */,
 				73A7885A2DB178BF004F856D /* FirebaseAnalytics in Frameworks */,
 				73A7885C2DB178BF004F856D /* FirebaseAuth in Frameworks */,
 			);
@@ -77,6 +94,8 @@
 				73A788592DB178BF004F856D /* FirebaseAnalytics */,
 				73A7885B2DB178BF004F856D /* FirebaseAuth */,
 				73A7885D2DB178BF004F856D /* FirebaseCrashlytics */,
+				734FE0A52DB422AD00E6C6CB /* GoogleSignIn */,
+				734FE0A72DB422AD00E6C6CB /* GoogleSignInSwift */,
 			);
 			productName = AekzamiTest;
 			productReference = 7349097F2DB14C0C004E3158 /* AekzamiTest.app */;
@@ -108,6 +127,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				73A788582DB178BF004F856D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				734FE0A42DB422AD00E6C6CB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 734909802DB14C0C004E3158 /* Products */;
@@ -271,6 +291,7 @@
 				DEVELOPMENT_TEAM = 7W278NP9KT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AekzamiTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -303,6 +324,7 @@
 				DEVELOPMENT_TEAM = 7W278NP9KT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AekzamiTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -349,6 +371,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		734FE0A42DB422AD00E6C6CB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		73A788582DB178BF004F856D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -360,6 +390,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		734FE0A52DB422AD00E6C6CB /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 734FE0A42DB422AD00E6C6CB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		734FE0A72DB422AD00E6C6CB /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 734FE0A42DB422AD00E6C6CB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		73A788592DB178BF004F856D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 73A788582DB178BF004F856D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

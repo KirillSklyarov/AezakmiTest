@@ -7,27 +7,18 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 final class StartAppManager {
 
     private let authManager: AuthManager
     private let router: AppRouter
 
-//    private let dataStore: Store
-//    private let networkService: NetworkService
-
     init() {
         FirebaseApp.configure()
+        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: AppConstants.auth.goggleSignInID.rawValue)
         self.authManager = AuthManager()
         self.router = AppRouter()
-
-//        self.dataStore = Store()
-
-//        let networkClient = NetworkClient(decoder: JSONDecoder(),
-//                                          encoder: JSONEncoder(),
-//                                          session: URLSession(configuration: .default))
-//
-//        self.networkService = NetworkService(networkClient: networkClient)
     }
 
     @ViewBuilder
@@ -46,7 +37,5 @@ final class StartAppManager {
         .tint(.white)
         .environment(router)
         .environment(authManager)
-//        .environment(dataStore)
-//        .environment(networkService)
     }
 }

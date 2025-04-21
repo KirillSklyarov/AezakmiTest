@@ -18,11 +18,11 @@ struct SignInView: View {
             .onAppear {
                 viewModel.setDependencies(authManager, router)
             }
-//            .applyAuthErrorAlert(
-//                type: .signIn,
-//                alert: viewModel.alert,
-//                isAlertPresented: $viewModel.isAlertPresented
-//            )
+            .applyAuthErrorAlert(
+                type: .signIn,
+                alert: viewModel.alert,
+                isAlertPresented: $viewModel.isAlertPresented
+            )
     }
 }
 

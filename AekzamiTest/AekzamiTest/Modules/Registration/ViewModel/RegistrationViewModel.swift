@@ -45,7 +45,7 @@ final class RegistrationViewModel: RegistrationViewModeling {
     }
 
     func registerUser() {
-        authManager?.registration(email: data.login, password: data.password) { [weak self] result in
+        authManager?.registration(email: data.email, password: data.password) { [weak self] result in
             guard let self else { return }
             switch result {
             case .failure(let error):

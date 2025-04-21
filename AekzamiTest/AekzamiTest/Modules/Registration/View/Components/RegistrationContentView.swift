@@ -15,7 +15,7 @@ struct RegistrationContentView: View {
     var body: some View {
         VStack(spacing: 40) {
             TitleView()
-            AppTextField(type: .login, login: viewModel.binding(for: \.login))
+            AppTextField(type: .login, login: viewModel.binding(for: \.email))
                 .focused($isFocused)
 
             AppTextField(type: .password, password: viewModel.binding(for: \.password))

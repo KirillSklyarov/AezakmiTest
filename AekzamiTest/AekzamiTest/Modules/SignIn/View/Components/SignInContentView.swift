@@ -15,12 +15,16 @@ struct SignInContentView: View {
     var body: some View {
         VStack(spacing: 30) {
             Spacer()
-            AppTextField(type: .login, login: viewModel.binding(for: \.login))
+            AppTextField(type: .login, login: viewModel.binding(for: \.email))
                 .focused($isFocused)
             AppTextField(type: .password, password: viewModel.binding(for: \.password))
             AppButton(type: .enter) {
                 viewModel.signIn()
             }
+            AppButton(type: .googleEnter) {
+                viewModel.signInWithGoogle()
+            }
+
             AppButton(type: .forgotPassword) {
                 viewModel.goToResetPassword()
             }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct AekzamiTestApp: App {
@@ -15,6 +16,10 @@ struct AekzamiTestApp: App {
     var body: some Scene {
         WindowGroup {
             startAppManager.startApp()
+                .onOpenURL { url in
+                    print("Here")
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
     }
 }

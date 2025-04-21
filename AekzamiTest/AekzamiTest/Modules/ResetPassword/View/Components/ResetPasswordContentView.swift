@@ -18,12 +18,15 @@ struct ResetPasswordContentView: View {
                 .font(.system(size: 100))
 
             AppLabel(type: .userName, text: "Сброс пароля")
+
+            AppTextField(type: .login)
+
             AppLabel(type: .resetPassword)
 
             Spacer()
 
             AppButton(type: .resetPassword) {
-                viewModel.signIn()
+                viewModel.resetPassword()
             }
             Spacer()
         }

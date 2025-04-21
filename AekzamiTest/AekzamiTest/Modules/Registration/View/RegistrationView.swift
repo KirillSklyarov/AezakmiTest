@@ -14,14 +14,16 @@ struct RegistrationView: View {
     @State private var viewModel = RegistrationViewModel()
 
     var body: some View {
-        RegistrationContentView(viewModel: viewModel)
-            .onAppear {
-                viewModel.setDependencies(authManager, router)
-            }
-//            .applyAuthErrorAlert(
-//                alert: viewModel.alert,
-//                isAlertPresented: $viewModel.isAlertPresented
-//            )
+        VStack {
+            RegistrationContentView(viewModel: viewModel)
+                .onAppear {
+                    viewModel.setDependencies(authManager, router)
+                }
+            //            .applyAuthErrorAlert(
+            //                alert: viewModel.alert,
+            //                isAlertPresented: $viewModel.isAlertPresented
+            //            )
+        }
     }
 }
 

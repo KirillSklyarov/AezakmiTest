@@ -24,6 +24,7 @@ enum AppButtonType {
     case exit
     case category
     case haveAccount
+    case googleEnter
 }
 
 struct AppButton: View {
@@ -64,6 +65,8 @@ struct AppButton: View {
             case .signOut: ExitButtonView(buttonText: "Выйти из аккаунта")
             case .saveUsername: RegisterButtonView(buttonText: "Продолжить", isDisabled: isDisabled)
             case .resetPassword: RegisterButtonView(buttonText: "Сбросить пароль", isDisabled: isDisabled)
+            case .googleEnter: GoogleSignInButtonView()
+
             }
         }
     }
@@ -86,6 +89,7 @@ struct AppButton: View {
         case .signOut: print("Действие по умолчанию для выхода из аккаунта")
         case .saveUsername: print("Действие по умолчанию для сохранения имени")
         case .resetPassword: print("Действие по умолчанию для сброса пароля")
+        case .googleEnter: print("Действие по умолчанию для гугла")
         }
     }
 }
@@ -114,6 +118,21 @@ struct RegisterButtonView: View {
             .frame(maxWidth: .infinity, minHeight: AppConstants.Height.buttonMinHeight)
             .background(isDisabled ? AppConstants.AppColor.fontGray : AppConstants.AppColor.buttonYellow)
             .clipShape(.rect(cornerRadius: AppConstants.cornerRadius))
+    }
+}
+
+struct GoogleSignInButtonView: View {
+    var body: some View {
+        HStack(spacing: 20) {
+            Image("googleIcon")
+                .resizable()
+                .frame(width: 20, height: 20)
+            Text("Войти через Google")
+                .foregroundStyle(.black)
+        }
+        .frame(maxWidth: .infinity, minHeight: AppConstants.Height.buttonMinHeight)
+        .background(.white)
+        .clipShape(.rect(cornerRadius: AppConstants.cornerRadius))
     }
 }
 

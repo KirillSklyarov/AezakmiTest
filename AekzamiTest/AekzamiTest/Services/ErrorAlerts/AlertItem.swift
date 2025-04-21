@@ -9,14 +9,12 @@ import SwiftUI
 
 struct AlertItem: Identifiable {
     var id = UUID()
-    let title: String
     let message: String
     let buttonTitle: String = "OK"
     let isRepeatable: Bool
 
-    init(id: UUID = UUID(), title: String, message: String, isRepeatable: Bool = false) {
+    init(id: UUID = UUID(), message: String, isRepeatable: Bool = false) {
         self.id = id
-        self.title = title
         self.message = message
         self.isRepeatable = isRepeatable
     }

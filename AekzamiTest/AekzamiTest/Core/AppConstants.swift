@@ -19,10 +19,13 @@ struct AppConstants {
         static let buttonRed = Color(hex: "FF0000")
         static let statisticsRowColor: Color = Color(hex: "504569")
     }
-    
+
+    enum auth: String {
+        case goggleSignInID = "1018185283402-4r7s596qt946lrt0qgpropr3ihmlsehm.apps.googleusercontent.com"
+    }
+
     enum Height {
         static let buttonMinHeight: CGFloat = 60
-        static let ratingMinHeight: CGFloat = 40
     }
 
     enum UserDefaultsKeys {
