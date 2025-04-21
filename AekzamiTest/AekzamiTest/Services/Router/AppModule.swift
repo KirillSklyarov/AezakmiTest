@@ -12,11 +12,12 @@ enum AppModule {
     case signIn
     case resetPassword
     case mainMenu
+    case emailVerification
 
     var isFullScreen: Bool {
         switch self {
-        case .mainMenu: return true
-        case .registration, .signIn, .resetPassword: return false
+        case .registration, .emailVerification, .signIn, .mainMenu: return true
+        case .resetPassword: return false
         }
     }
 
@@ -26,6 +27,7 @@ enum AppModule {
         case .signIn: SignInView()
         case .resetPassword: ResetPasswordView()
         case .mainMenu: PictureMainView()
+        case .emailVerification: EmailVerificationView()
         }
     }
 }

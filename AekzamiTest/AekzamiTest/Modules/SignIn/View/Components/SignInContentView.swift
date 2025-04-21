@@ -10,13 +10,12 @@ import SwiftUI
 struct SignInContentView: View {
 
     var viewModel: EnterViewModeling
-    @FocusState private var isFocused: Bool
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(spacing: 30) {
             Spacer()
             AppTextField(type: .login, login: viewModel.binding(for: \.email))
-                .focused($isFocused)
             AppTextField(type: .password, password: viewModel.binding(for: \.password))
             AppButton(type: .enter) {
                 viewModel.signIn()
@@ -29,8 +28,7 @@ struct SignInContentView: View {
                 viewModel.goToResetPassword()
             }
             AppButton(type: .backToRegistration) {
-                isFocused = false
-                viewModel.backToRegistration()
+                dismiss()
             }
             Spacer()
         }

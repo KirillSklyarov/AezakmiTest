@@ -25,6 +25,7 @@ enum AppButtonType {
     case category
     case haveAccount
     case googleEnter
+    case backToLogin
 }
 
 struct AppButton: View {
@@ -66,7 +67,7 @@ struct AppButton: View {
             case .saveUsername: RegisterButtonView(buttonText: "Продолжить", isDisabled: isDisabled)
             case .resetPassword: RegisterButtonView(buttonText: "Сбросить пароль", isDisabled: isDisabled)
             case .googleEnter: GoogleSignInButtonView()
-
+            case .backToLogin: RegisterButtonView(buttonText: "Перейти к авторизации", isDisabled: isDisabled)
             }
         }
     }
@@ -90,6 +91,7 @@ struct AppButton: View {
         case .saveUsername: print("Действие по умолчанию для сохранения имени")
         case .resetPassword: print("Действие по умолчанию для сброса пароля")
         case .googleEnter: print("Действие по умолчанию для гугла")
+        case .backToLogin: print("Back to login?")
         }
     }
 }

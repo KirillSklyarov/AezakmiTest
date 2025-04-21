@@ -54,11 +54,14 @@ final class RegistrationViewModel: RegistrationViewModeling {
             case .failure(let error):
                 showAlert(with: error)
             case .success(_):
-                isSuccessIndicatorPresented = true
                 print("✅ Пользователь успешно зарегистрирован")
-//                goToEnterUsername()
+                goToEmailVerification()
             }
         }
+    }
+
+    func goToEmailVerification() {
+        router?.show(.emailVerification)
     }
 
     func binding(for keyPath: WritableKeyPath<RegistrationData, String>) -> Binding<String> {

@@ -5,7 +5,6 @@
 //  Created by Kirill Sklyarov on 17.04.2025.
 //
 
-import SwiftUI
 import FirebaseAuth
 import GoogleSignIn
 
@@ -22,15 +21,32 @@ final class AuthManager {
 
     // Регистрация
     func registration(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             if let error { completion(.failure(error)); return }
-            completion(.success(true))
+
+            self?.emailVerification {
+                switch $0 {
+                case .failure(let error):
+                    completion(.failure(error))
+                    print("Error sending email verification: \(error)")
+                case .success:
+                    print("✅ Email verification sent")
+                    completion(.success(true))
+                }
+            }
         }
     }
 
     // Авторизация
     func signIn(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error { completion(.failure(error)); return }
+            completion(.success(true))
+        }
+    }
+
+    func emailVerification(completion: @escaping (Result<Bool, Error>) -> Void) {
+        Auth.auth().currentUser?.sendEmailVerification { error in
             if let error { completion(.failure(error)); return }
             completion(.success(true))
         }
@@ -95,6 +111,12 @@ final class AuthManager {
         //                completion(.success(()))
         //            }
         //        }
+    }
+
+    // Получаем имя пользователя
+    func getUserEmailFromFirebase() -> String {
+        guard let user = Auth.auth().currentUser else { print("We don't have user"); return "" }
+        return user.email ?? ""
     }
 
     // Получаем имя пользователя

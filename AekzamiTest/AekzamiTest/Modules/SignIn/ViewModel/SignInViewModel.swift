@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import GoogleSignIn
 
 protocol EnterViewModeling {
     func signIn()
@@ -60,7 +59,7 @@ final class SignInViewModel: EnterViewModeling {
     }
 
     func backToRegistration() {
-        router?.popLast()
+        router?.show(.registration)
     }
 
     func goToResetPassword() {
