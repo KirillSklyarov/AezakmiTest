@@ -14,16 +14,32 @@ struct RegistrationView: View {
     @State private var viewModel = RegistrationViewModel()
 
     var body: some View {
-        VStack {
+        ZStack {
             RegistrationContentView(viewModel: viewModel)
                 .onAppear {
                     viewModel.setDependencies(authManager, router)
                 }
-                .applyAuthErrorAlert(
-                    type: .registration,
-                    alert: viewModel.alert,
-                    isAlertPresented: $viewModel.isAlertPresented
-                )
+            showLoading()
+            isShowErrorAlert()
+        }
+    }
+
+    @ViewBuilder
+    func showLoading() -> some View {
+        if viewModel.state == .loading {
+            LoadingIndicator()
+        }
+    }
+
+    @ViewBuilder
+    func isShowErrorAlert() -> some View {
+        if viewModel.state == .error {
+            AuthErrorAlertView(
+                type: .registration,
+                alert: viewModel.alert,
+                isAlertPresented: $viewModel.isAlertPresented,
+                okAction: nil
+            )
         }
     }
 }

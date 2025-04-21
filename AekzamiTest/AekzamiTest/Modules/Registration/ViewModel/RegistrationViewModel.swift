@@ -26,34 +26,38 @@ final class RegistrationViewModel: RegistrationViewModeling {
     private var authManager: AuthManager?
     private var data = RegistrationData()
 
-//    var state: ViewModelState = .success
+    var state: ViewModelState = .initial
     private(set) var alert: AlertItem?
     var isAlertPresented: Bool = false
     var isSuccessIndicatorPresented: Bool = false
 
-//    // MARK: - Public methods
+    // MARK: - Public methods
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
         self.authManager = authManager
         self.router = router
+        setState(.success)
     }
-//
-//    func setState(_ state: ViewModelState) {
-//        self.state = state
-//    }
-//
+
+    func setState(_ state: ViewModelState) {
+        self.state = state
+    }
+
     func goToEnterScreen() {
         router?.show(.signIn)
     }
 
     func registerUser() {
-        guard userDataValidation() else { return }
+        setState(.loading)
+        guard userDataValidation() else { setState(.error); return }
 
         authManager?.registration(email: data.email, password: data.password) { [weak self] in
             guard let self else { return }
             switch $0 {
             case .failure(let error):
+                setState(.error)
                 showAlert(with: error)
             case .success(_):
+                setState(.success)
                 print("✅ Пользователь успешно зарегистрирован")
                 goToEmailVerification()
             }

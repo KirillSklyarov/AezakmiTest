@@ -15,6 +15,29 @@ enum AuthErrorAlertType: String {
     case resetPassword = "Ошибка сброса пароля"
 }
 
+struct AuthErrorAlertView: View {
+    let type: AuthErrorAlertType
+    let alert: AlertItem?
+    @Binding var isAlertPresented: Bool
+    let okAction: (() -> Void)?
+
+    var body: some View {
+        Color.clear
+            .alert(type.rawValue,
+                   isPresented: $isAlertPresented,
+                   presenting: alert)
+        { alertItem in
+            switch type {
+            case .registration, .username, .signIn, .resetPassword:
+                Button(alert?.buttonTitle ?? "OK") { okAction?() }
+            default:
+                Button("Отмена", role: .cancel) { }
+                Button("OK", role: .destructive) { okAction?() }
+            }
+        } message: { alertItem in Text(alertItem.message) }
+    }
+}
+
 struct AuthErrorAlertModifier: ViewModifier {
 
     let type: AuthErrorAlertType
