@@ -5,7 +5,8 @@
 //  Created by Kirill Sklyarov on 17.04.2025.
 //
 
-import Foundation
+import SwiftUI
+import PhotosUI
 
 protocol PictureMainViewModeling {
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
@@ -17,6 +18,8 @@ final class PictureMainViewModel: PictureMainViewModeling {
 
     private var router: AppRouting?
     private var authManager: AuthManager?
+
+    var selectedImage: Image?
 //    private var data = RegistrationData()
 
 //    var state: ViewModelState = .success
@@ -32,5 +35,15 @@ final class PictureMainViewModel: PictureMainViewModeling {
     func logout() {
         authManager?.signOut()
         router?.backToRoot()
+    }
+
+    func loadImage(_ newItem: PhotosPickerItem?) {
+        Task {
+            if let newItem,
+               let data = try? await newItem.loadTransferable(type: Data.self),
+               let image = UIImage(data: data) {
+                selectedImage = Image(uiImage: image)
+            }
+        }
     }
 }

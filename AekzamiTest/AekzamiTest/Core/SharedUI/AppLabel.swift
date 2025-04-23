@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum AppLabelType {
+    case choosePhoto
     case userName
     case statistics
     case answer
@@ -62,6 +63,14 @@ struct AppLabel: View {
                 .font(.system(size: 22, weight: .semibold))
                 .foregroundStyle(color ?? .white)
                 .multilineTextAlignment(.leading)
+        case .choosePhoto:
+            Text("Выбрать фото")
+                .fontWeight(.bold)
+                .padding(.vertical, 20)
+                .frame(maxWidth: .infinity)
+                .background(GradientView())
+                .foregroundStyle(.white)
+                .clipShape(.rect(cornerRadius: AppConstants.cornerRadius))
         }
     }
 }

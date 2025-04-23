@@ -47,7 +47,7 @@ struct AppButton: View {
             action != nil ? action!() : defaultAction()
         } label: {
             switch type {
-            case .enter: EnterButtonView(buttonText: "Войти")
+            case .enter: EnterButtonView(buttonText: title ?? "Войти")
             case .register: RegisterButtonView(buttonText: "Зарегистрироваться", isDisabled: isDisabled)
             case .forgotPassword: DidForgetPasswordButtonView(text: title)
             case .startGame: EnterButtonView(buttonText: "Начать игру!")
