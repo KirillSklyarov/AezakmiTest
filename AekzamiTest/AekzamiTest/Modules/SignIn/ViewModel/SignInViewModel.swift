@@ -24,6 +24,7 @@ final class SignInViewModel: EnterViewModeling {
     private var authManager: AuthManager?
     private var data = RegistrationData()
 
+    private(set) var state: ViewModelState = .initial
     private(set) var alert: AlertItem?
     var isAlertPresented = false
     var isSuccessIndicatorPresented = false
@@ -34,7 +35,12 @@ final class SignInViewModel: EnterViewModeling {
         self.router = router
     }
 
+    func setState(_ state: ViewModelState) {
+        self.state = state
+    }
+
     func signIn() {
+        setState(.loading)
         authManager?.signIn(email: data.email, password: data.password) { [weak self] in
             guard let self else { return }
             switch $0 {
@@ -42,6 +48,7 @@ final class SignInViewModel: EnterViewModeling {
                 print("✅ Authorization successful")
                 isSuccessIndicatorPresented = true
             case .failure(let error):
+                setState(.error)
                 showAlert(with: error)
             }
         }
