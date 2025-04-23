@@ -11,6 +11,7 @@ import PhotosUI
 protocol PictureMainViewModeling {
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting)
     func logout()
+    func loadImage(_ newItem: PhotosPickerItem?)
 }
 
 @Observable
@@ -20,6 +21,7 @@ final class PictureMainViewModel: PictureMainViewModeling {
     private var authManager: AuthManager?
 
     var selectedImage: Image?
+    
 //    private var data = RegistrationData()
 
 //    var state: ViewModelState = .success
@@ -30,6 +32,10 @@ final class PictureMainViewModel: PictureMainViewModeling {
     func setDependencies(_ authManager: AuthManager, _ router: AppRouting) {
         self.authManager = authManager
         self.router = router
+    }
+
+    func setImage(_ image: UIImage) {
+        self.selectedImage = Image(uiImage: image)
     }
 
     func logout() {
