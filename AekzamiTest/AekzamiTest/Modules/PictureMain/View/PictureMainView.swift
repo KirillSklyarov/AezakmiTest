@@ -23,12 +23,6 @@ struct PictureMainView: View {
     }
 }
 
-
-
-//            AppButton(type: .category, title: "Выход из профиля") {
-//                viewModel.logout()
-//            }
-
 #Preview {
     let authManager = AuthManager()
     let appRouter = AppRouter()
