@@ -21,7 +21,8 @@ final class PictureMainViewModel: PictureMainViewModeling {
     private var authManager: AuthManager?
 
     var selectedImage: Image?
-    
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+
 //    private var data = RegistrationData()
 
 //    var state: ViewModelState = .success

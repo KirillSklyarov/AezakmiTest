@@ -292,6 +292,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AekzamiTest/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Приложение запрашивает доступ к камере для создания фотографий";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Приложение запрашивает доступ к фотогалерее для выбора изображений";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -325,6 +327,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AekzamiTest/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Приложение запрашивает доступ к камере для создания фотографий";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Приложение запрашивает доступ к фотогалерее для выбора изображений";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -10,10 +10,8 @@ import PhotosUI
 import UIKit
 
 struct ContentPhotoPickerView: View {
-    @State var selectedItem: PhotosPickerItem?
     @State var showingActionSheen = false
     @State private var showPhotoPicker = false
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     var viewModel: PictureMainViewModel
 
@@ -36,17 +34,19 @@ struct ContentPhotoPickerView: View {
                 "Выберите источника",
                 isPresented: $showingActionSheen) {
                     Button("Камера") {
-                        sourceType = .camera
+                        viewModel.sourceType = .camera
+                        showPhotoPicker = true
                     }
                     Button("Выбрать из галереи") {
-                        sourceType = .photoLibrary
+                        viewModel.sourceType = .photoLibrary
                         showPhotoPicker = true
                     }
                 }
+                .tint(.primary)
         }
         .padding(.horizontal)
         .sheet(isPresented: $showPhotoPicker) {
-            GalleryPicker(sourceType: sourceType) { photo in
+            GalleryPicker(sourceType: viewModel.sourceType) { photo in
                 viewModel.setImage(photo)
             }
         }
