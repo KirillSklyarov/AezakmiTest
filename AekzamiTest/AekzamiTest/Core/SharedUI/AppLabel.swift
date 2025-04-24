@@ -10,6 +10,7 @@ import SwiftUI
 enum AppLabelType {
     case choosePhoto
     case resetRotation
+    case resetScale
     case userName
     case statistics
     case answer
@@ -74,7 +75,17 @@ struct AppLabel: View {
                 .clipShape(.rect(cornerRadius: AppConstants.cornerRadius))
         case .resetRotation:
             Text("Сбросить угол вращения")
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                .padding(.vertical, 20)
+                .frame(maxWidth: .infinity)
+                .background(AppConstants.AppColor.buttonYellow)
+                .foregroundStyle(.black)
+                .clipShape(.rect(cornerRadius: AppConstants.cornerRadius))
+        case .resetScale:
+            Text("Сбросить масштабирование")
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
                 .padding(.vertical, 20)
                 .frame(maxWidth: .infinity)
                 .background(AppConstants.AppColor.buttonYellow)

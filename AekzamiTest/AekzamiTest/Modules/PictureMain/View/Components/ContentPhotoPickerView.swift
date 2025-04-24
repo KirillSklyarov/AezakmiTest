@@ -12,8 +12,14 @@ import UIKit
 struct ContentPhotoPickerView: View {
     @State private var showingActionSheen = false
     @State private var showPhotoPicker = false
+
     @State private var rotationAngle: Angle = .zero
-    @State private var isButtonVisible = false
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+
+    @State private var isRotationButtonVisible = false
+    @State private var isScaleButtonVisible = false
+
 
     var viewModel: PictureMainViewModel
 
@@ -24,20 +30,34 @@ struct ContentPhotoPickerView: View {
             SelectedImageView(selectedImage: viewModel.selectedImage)
                 .frame(maxHeight: 500)
                 .rotationEffect(rotationAngle)
+                .scaleEffect(scale)
                 .gesture (
                     RotationGesture()
                         .onChanged { value in
-                            isButtonVisible = true
+                            isRotationButtonVisible = true
                             rotationAngle = value
                         }
                         .onEnded { value in
                             rotationAngle = value
                         }
+                        .simultaneously(with: MagnificationGesture()
+                            .onChanged { value in
+                                isScaleButtonVisible = true
+                                scale = lastScale * value
+                            }
+                            .onEnded { value in
+                                lastScale = scale
+                            }
+                        )
                 )
 
             Spacer()
             VStack(spacing: 20) {
-                showResetRotationButton()
+
+                HStack {
+                    showResetRotationButton()
+                    showResetScaleButton()
+                }
 
                 Button {
                     showingActionSheen = true
@@ -72,8 +92,8 @@ struct ContentPhotoPickerView: View {
     func showResetRotationButton() -> some View {
         AppLabel(type: .resetRotation)
             .onTapGesture { resetRotation() }
-            .opacity(isButtonVisible ? 1 : 0)
-            .animation(.easeInOut(duration: 0.3), value: isButtonVisible)
+            .opacity(isRotationButtonVisible ? 1 : 0)
+            .animation(.easeInOut(duration: 0.3), value: isRotationButtonVisible)
     }
 
     private func resetRotation() {
@@ -81,7 +101,24 @@ struct ContentPhotoPickerView: View {
             rotationAngle = .zero
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            isButtonVisible = false
+            isRotationButtonVisible = false
+        }
+    }
+
+    @ViewBuilder
+    func showResetScaleButton() -> some View {
+        AppLabel(type: .resetScale)
+            .onTapGesture { resetScale() }
+            .opacity(isScaleButtonVisible ? 1 : 0)
+            .animation(.easeInOut(duration: 0.3), value: isScaleButtonVisible)
+    }
+
+    private func resetScale() {
+        withAnimation {
+            scale = 1.0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            isScaleButtonVisible = false
         }
     }
 }
